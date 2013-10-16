@@ -1,0 +1,7 @@
+maintainer        'Chris Boone'
+maintainer_email  'contact@hypsometry.com'
+license           'MIT'
+description       ''
+long_description  ''
+version           '0.1.0'
+supports          'mac_os_x'

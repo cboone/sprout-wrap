@@ -1,25 +1,34 @@
 recipes:
-
 # base (required by sprout)
 - sprout-osx-base::bash_it
 - pivotal_workstation::create_var_chef_cache
 - sprout-osx-base::homebrew
 
+# OS X base
+- hpm-workstation::osx_updates
+
 # settings
-- pivotal_workstation::sshd_on
-- pivotal_workstation::inputrc
+- pivotal_workstation::default_editor
 - sprout-osx-settings::defaults_fast_key_repeat_rate
-- pivotal_workstation::locate_on
+- sprout-osx-settings::function_keys
+- pivotal_workstation::keyboard_preferences
 - sprout-osx-settings::global_environment_variables
+- pivotal_workstation::inputrc
+- pivotal_workstation::locate_on
+- pivotal_workstation::menubar_preferences
+- hpm-workstation::rename_machine
+- hpm-workstation::ssh_keys
+- pivotal_workstation::sshd_on
+- pivotal_workstation::tcp_keepalive
 
 # development (general)
 - pivotal_workstation::workspace_directory
 - pivotal_workstation::unix_essentials
-- pivotal_workstation::git_projects
+- hpm-workstation::git_projects
 - pivotal_workstation::git_config_global_defaults
 - pivotal_workstation::git_scripts
 
-# development (rails)
+# development (Rails)
 - pivotal_workstation::rvm
 - pivotal_workstation::gem_setup
 - pivotal_workstation::mysql
@@ -28,28 +37,43 @@ recipes:
 - sprout-osx-apps::node_js
 - pivotal_workstation::qt
 
-# apps
-- pivotal_workstation::screen_sharing_app
-- sprout-osx-apps::skype
-- pivotal_workstation::shiftit
-- sprout-osx-apps::firefox
-- sprout-osx-apps::dropbox
-- sprout-osx-apps::chrome
-- pivotal_workstation::mouse_locator
-- pivotal_workstation::menumeters
+# applications (general)
 - pivotal_workstation::bettertouchtool
+- sprout-osx-apps::chrome
 - pivotal_workstation::ccmenu
+- sprout-osx-apps::clamxav
+- sprout-osx-apps::dropbox
+- sprout-osx-apps::firefox
+- sprout-osx-apps::firefox_aurora
+- pivotal_workstation_private::fusion
 - pivotal_workstation::github_for_mac
 - pivotal_workstation::gitx
+- sprout-osx-apps::google_drive
+- sprout-osx-apps::intellij_community_edition
+- sprout-osx-apps::istatmenus
 - sprout-osx-apps::iterm2
 - pivotal_workstation::keycastr
+- pivotal_workstation::libreoffice
+- pivotal_workstation::menumeters
+- pivotal_workstation::mouse_locator
+- hpm-osx-apps::notational_velocity
+- sprout-osx-apps::propane
+- pivotal_workstation::screen_sharing_app
+- pivotal_workstation::shiftit
+- sprout-osx-apps::skype
+- sprout-osx-apps::table_tennis_time
+- sprout-osx-apps::tig
+- hpm-osx-apps::time_out
 - sprout-osx-apps::virtualbox
 - sprout-osx-apps::vagrant
 
-# apps (editors)
+- pivotal_workstation_private::license_fusion
+
+# applications (editors)
 - pivotal_workstation::textmate
 - pivotal_workstation::textmate_bundles
 - pivotal_workstation::textmate_preferences
+- pivotal_workstation_private::license_textmate
 
 - pivotal_workstation::vim
 - pivotal_workstation::vim_config
@@ -61,15 +85,26 @@ recipes:
 node_attributes:
   git_pairs_domain: pivotallabs.com
   git_pairs_authors:
-    - initials: ah
-      name: Abhijit Hiremagalur
-      shortname: abhi
-    - initials: bc
-      name: Brian Cunnie
-      shortname: cunnie
-    - initials: jrhb
-      name: Jonathan Barnes
-  git_projects:
-    -
-      - sprout-wrap
-      - https://github.com/pivotal-sprout/sprout-wrap.git
+    - initials: cb
+      name: Chris Boone
+      shortname: cboone
+
+  hpm:
+    git_projects:
+      - directory: pivotal_workstation_private
+        remotes:
+          origin: https://pivotalworkstation@github.com/pivotalprivate/pivotal_workstation_private.git
+
+      - directory: sprout
+        remotes:
+          origin: git@github.com:cboone/sprout.git
+
+      - directory: sprout-wrap
+        remotes:
+          origin: git@github.com:cboone/hpm-sprout-wrap.git
+          upstream: git@github.com:pivotal-sprout/sprout-wrap.git
+
+    machine_name: kiwi
+
+  intellij_community_edition_download_uri: http://download.jetbrains.com/idea/ideaIC-12.1.4.dmg
+  intellij_community_edition_sha: 4ad31bafcdcf7800a05584a705eec2c11da7fceda0bb47dd9ab46c22a44cb720

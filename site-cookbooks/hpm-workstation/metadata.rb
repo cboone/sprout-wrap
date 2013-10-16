@@ -1,0 +1,13 @@
+maintainer        'Chris Boone'
+maintainer_email  'contact@hypsometry.com'
+license           'MIT'
+description       ''
+long_description  ''
+version           '0.1.0'
+supports          'mac_os_x'
+
+depends           'hpm-osx-apps'
+depends           'pivotal_workstation'
+depends           'pivotal_workstation_private'
+depends           'sprout-osx-apps'
+depends           'sprout-osx-settings'
